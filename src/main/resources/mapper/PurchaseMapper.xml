@@ -1,6 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mapper.PurchaseMapper">
+	<update id="update_status">
+		update purchase
+		set status=#{status}
+		where oid=#{oid}
+	</update>
+ 	<select id="list_admin" resultType="hashmap">
+      select *
+      from view_purchase
+      <if test="key=='uid'">
+         where uid like concat('%', #{query}, '%')
+      </if>
+      <if test="key=='oid'">
+         where oid like concat('%', #{query}, '%')
+      </if>
+      <if test="key=='status'">
+         where status like concat('%', #{query}, '%')
+      </if>
+      <if test="key=='address1'">
+         where address1 like concat('%', #{query}, '%')
+      </if>
+      <if test="key=='phone'">
+         where phone like concat('%', #{query}, '%')
+      </if>
+      <if test="key=='uname'">
+         where uname like concat('%', #{query}, '%')
+      </if>
+      order by regdate desc
+      limit #{start}, #{size}
+   </select>
+   <select id="total_admin" resultType="int">
+      select count(*)
+      from view_purchase
+      <if test="key=='uid'">
+         where uid like concat('%', #{query}, '%')
+      </if>
+      <if test="key=='oid'">
+         where oid like concat('%', #{query}, '%')
+      </if>
+      <if test="key=='status'">
+         where status like concat('%', #{query}, '%')
+      </if>
+      <if test="key=='address1'">
+         where address1 like concat('%', #{query}, '%')
+      </if>
+      <if test="key=='phone'">
+         where phone like concat('%', #{query}, '%')
+      </if>
+      <if test="key=='uname'">
+         where uname like concat('%', #{query}, '%')
+      </if>
+   </select>
 	<select id="list_orders" resultType="hashmap">
 		select * 
 		from view_orders

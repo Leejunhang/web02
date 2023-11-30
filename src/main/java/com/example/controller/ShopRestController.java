@@ -23,9 +23,28 @@ import java.util.*;
 public class ShopRestController {
 	@Autowired
 	ShopDAO dao;
-	
+
 	@Autowired
 	ShopService service;
+
+	@PostMapping("/ckupload")
+	public HashMap<String, Object> ckupload(@PathVariable int pid, MultipartHttpServletRequest multi){
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		MultipartFile file=multi.getFile("upload");
+		String path="/upload/shop/" + pid + "/";
+		File filePath=new File(path);
+		if(!filePath.exists()) filePath.mkdir();
+		
+		String fileName=System.currentTimeMillis() + ".jpg";
+		try {
+			file.transferTo(new File("c:" + path +fileName));
+			map.put("uploaded", 1);
+			map.put("url", "/display?file=" + path + fileName);
+		}catch(Exception e) {
+			System.out.println("ckupload:" + e.toString());
+		}
+		return map;
+	}
 	
 	@GetMapping("/insert/favorites")
 	public void insert(int pid, String uid) {
@@ -80,6 +99,16 @@ public class ShopRestController {
 	@GetMapping("/info/{pid}")
 	public HashMap<String,Object> info(@PathVariable int pid, String uid){
 		return service.read(pid, uid);
+	}
+	
+	@PostMapping("/update/content")
+	public void updateContent(@RequestBody ShopVO vo) {
+		dao.updateContent(vo);
+	}
+	
+	@GetMapping("/chart1")
+	public List<HashMap<String, Object>> chart1(){
+		return dao.chart1();
 	}
 }
 

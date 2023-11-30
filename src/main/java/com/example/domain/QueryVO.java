@@ -5,6 +5,7 @@ public class QueryVO { //DTO
 	private int size;
 	private int page;
 	private int start;
+	private String key;
 	
 	public String getQuery() {
 		return query;
@@ -31,8 +32,17 @@ public class QueryVO { //DTO
 		this.start = start;
 	}
 	
+	public String getKey() {
+		return key;
+	}
+	public void setKey(String key) {
+		this.key = key;
+	}
 	@Override
 	public String toString() {
-		return "QueryVO [query=" + query + ", size=" + size + ", page=" + page + ", start=" + start + "]";
+		return "QueryVO [query=" + query + ", size=" + size + ", page=" + page + ", start=" + start + ", key=" + key
+				+ "]";
 	}
+
+	
 }

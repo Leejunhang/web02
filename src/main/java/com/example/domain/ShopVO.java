@@ -10,7 +10,14 @@ public class ShopVO {
 	private int lprice;
 	private String maker;
 	private Date regdate;
+	private String content;
 	
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
 	public int getPid() {
 		return pid;
 	}

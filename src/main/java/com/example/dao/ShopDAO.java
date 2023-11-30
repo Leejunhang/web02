@@ -18,4 +18,7 @@ public interface ShopDAO {
 	public void insertFavorites(int pid, String uid);
 	public void deleteFavorites(int pid, String uid);
 	public void updateFavorites(int pid, int amount);
+	public void updateContent(ShopVO vo);
+	public List<HashMap<String, Object>> chart1();
+	
 }

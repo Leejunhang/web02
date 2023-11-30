@@ -11,7 +11,14 @@ public class PurchaseVO {
 	private String address2;
 	private int sum;
 	private List<OrderVO> orders;
+	private int status;
 	
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
 	public String getOid() {
 		return oid;
 	}
@@ -62,10 +69,11 @@ public class PurchaseVO {
 	public void setOrders(List<OrderVO> orders) {
 		this.orders = orders;
 	}
-	
 	@Override
 	public String toString() {
 		return "PurchaseVO [oid=" + oid + ", uid=" + uid + ", uname=" + uname + ", phone=" + phone + ", address1="
-				+ address1 + ", address2=" + address2 + ", sum=" + sum + ", orders=" + orders + "]";
-	}	
+				+ address1 + ", address2=" + address2 + ", sum=" + sum + ", orders=" + orders + ", status=" + status
+				+ "]";
+	}
+	
 }
